@@ -76,3 +76,28 @@ totalSalary=$(($salary*$numWorkDays))
 
 done
 echo "total wages of 20 working days" $totalSalary
+
+#UC6
+
+MAX_HRS_IN_MONTH=100;
+EMP_RATE_PER_HR=20;
+totalEmpHr=0;
+totalWorkingDays=0;
+
+while [[ $totalEmpHr -lt $MAX_HRS_IN_MONTH &&
+          $totalWorkingDays -lt $numWorkDays ]]
+do
+     ((totalWorkingDays++))
+      empCheck=$((RANDOM%3));
+      case $empCheck in
+          $IS_FULL_TIME)
+                  empHrs=8;;
+          $IS_PART_TIME)
+                    empHrs=4;;
+              *)
+                empHrs=0;;
+      esac
+     totalEmpHr=$(( $empHrs + $totalEmpHr))
+done
+totalSalary=$(( $totalEmpHr * $EMP_RATE_PER_HR  ))
+echo "total salary dpending on condition of hrs and working days is " $totalSalary
