@@ -8,3 +8,17 @@ then
 else
      echo "employeee is absent";
 fi
+#UC2
+
+empRatePerday=20;
+empHrs=8;
+
+if [ $isPresent -eq $randomCheck ]
+then
+    
+     salary=$(($empRatePerday*$empHrs))
+     echo $salary
+else
+     echo "employee is abscent "
+fi
+
