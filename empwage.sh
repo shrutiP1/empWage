@@ -55,3 +55,24 @@ esac
 
 salary=$(($empHrs*$empRatePerday))
 echo "salary with switch case " $salary
+
+#UC5
+
+totalSalary=0;
+numWorkDays=20;
+for (( day=1; day<=$numWorkDays; day++))
+do
+    empCheck=$((RANDOM%3))
+    case $empCheck in
+      $IS_FULL_TIME)
+                   empHrs=8;;
+      $IS_PART_TIME)
+                   empHrs=4;;
+      *)
+                   empHrs=0;;
+     esac
+salary=$(($empHrs*$empRatePerday))
+totalSalary=$(($salary*$numWorkDays))
+
+done
+echo "total wages of 20 working days" $totalSalary
