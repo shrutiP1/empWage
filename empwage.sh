@@ -1,4 +1,3 @@
-#!/bin/bash -x
 echo "welcome"
 #UC1
 isPresent=1;
@@ -153,3 +152,40 @@ done
 totalSalary=$(($totalWorkHours*$EMP_RATE_PER_HR));
 echo "total salary of employee " $totalSalary
 echo  "daily wage is "${dailywage[@]}
+
+#UC9
+
+totalEmpHr=0;
+totalWorkingDays=0;
+totalWorkHours=0;
+declare -A dailyWagee
+function getWorkingHours(){
+    case $1 in
+       $IS_PART_TIME)
+                workingHrs=4;;
+       $IS_FULL_TIME)
+                workingHrs=8;;
+       *)
+                 workingHrs=0;;
+     esac
+   echo $workingHrs;
+}
+function getEmpWage()
+{
+   local workHours=$1
+
+    echo $(($workHours*$EMP_RATE_PER_HR))
+
+}
+while [[ $totalWorkHours -lt $MAX_HRS_IN_MONTH  &&
+          $totalWorkingDays -lt $numWorkDays ]]
+do
+       ((totalWorkingDays++))
+       workHours="$( getWorkingHours $((RANDOM%3)))"
+       totalWorkHours=$(( $totalWorkHours + $workHours ))
+       dailyWagee["DAY"$totalWorkingDays]="$( getEmpWage $workHours)"
+done
+
+totalSalary=$(($totalWorkHours*$EMP_RATE_PER_HR));
+echo ${dailyWagee[@]}
+echo ${!dailyWagee[@]}
