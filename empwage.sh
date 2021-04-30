@@ -22,3 +22,21 @@ else
      echo "employee is abscent "
 fi
 
+#UC3
+
+IS_PART_TIME=1;
+IS_FULL_TIME=2;
+
+if [ $IS_PART_TIME -eq $randomCheck ]
+then
+   empHrs=4;
+elif [ $IS_FULL_TIME -eq $randomCheck ]
+then
+   empHrs=8;
+else
+   empHrs=0;
+   echo "no salary"
+fi
+salary=$(($empRatePerday*$empHrs))
+
+echo "salary of employee depending upon part time or full time is " $salary
